@@ -11,38 +11,59 @@
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *copy;
-	int l = 0, s, *num_array;
+	listint_t *slow, *fast;
 
-	if (!(*head))
+	if (!(*head) || !((*head)->next))
 		return (1);
-	copy = *head;
-	while (copy != NULL)
+
+	fast = slow = *head;
+
+	while (fast &&  fast->next)
 	{
-		copy = copy->next;
-		l++;
+		slow = slow->next;
+		fast = fast->next->next;
 	}
-	num_array = malloc(sizeof(int) * l);
-	if (!num_array)
+
+	if (fast)
+		fast = reverse_listint(&slow->next);
+	else
+		fast = reverse_listint(&slow);
+
+	while (fast)
 	{
-		return (1);
-	}
-	copy = *head;
-	for (s = 0; s < l; s++)
-	{
-		num_array[s] = copy->n;
-		copy = copy->next;
-	}
-	for (s = 0; s < l / 2; s++)
-	{
-		if (num_array[l - 1 - s] != num_array[s])
-		{
-			free(num_array);
+		if (fast->n != (*head)->n)
 			return (0);
-		}
+		*head = (*head)->next;
+		fast = fast->next;
 	}
-	free(num_array);
 	return (1);
 }
 
 
+/**
+  *reverse_listint - reverse a list
+  *
+  *@head: pointer to pointer of head list
+  *
+  *Return: value of poped element
+  */
+listint_t *reverse_listint(listint_t **head)
+{
+	listint_t *temp1 = NULL, *temp2 = NULL;
+
+	if (!(*head))
+		return (*head);
+
+	if ((*head)->next)
+	{
+		while ((*head)->next)
+		{
+			temp1 = (*head);
+			(*head) = (*head)->next;
+			temp1->next = temp2;
+			temp2 = temp1;
+		}
+		(*head)->next = temp1;
+	}
+	return (*head);
+}
