@@ -33,14 +33,14 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t i;
 
 	printf("[.] bytes object info\n");
-	if (!PyBytes_Check(p))
+	if (PyObject_HasAttrString(p, "encode"))
 	{
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return (0);
 	}
 
-	size = PyBytes_Size(p);
-	bytes_str = PyBytes_AsString(p);
+	size = (*((PyVarObject *)p)).ob_size;
+	bytes_str = (*((char **)p));
 
 	printf("  size: %ld\n", size);
 	printf("  trying string: %s\n", bytes_str);
