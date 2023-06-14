@@ -5,4 +5,7 @@
 
 
 def square_matrix_simple(matrix=[]):
-    return list(map(lambda row: list(map(lambda a: a * a, row)), matrix))
+    new_matrix = []
+    for row in matrix:
+        new_matrix.append(list(map(lambda a: a * a, row)))
+    return new_matrix
