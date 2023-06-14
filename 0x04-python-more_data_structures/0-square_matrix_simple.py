@@ -7,5 +7,6 @@
 def square_matrix_simple(matrix=[]):
     new_matrix = []
     for row in matrix:
-        new_matrix.append(list(map(lambda a: a * a, row)))
+        new_row = [a * a for a in row]
+        new_matrix.append(new_row)
     return new_matrix
