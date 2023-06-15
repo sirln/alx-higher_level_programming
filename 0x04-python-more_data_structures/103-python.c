@@ -1,9 +1,6 @@
 #include <Python.h>
 #include <stdio.h>
 
-void print_python_list(PyObject *p);
-void print_python_bytes(PyObject *p);
-
 /**
   *print_python_list - print a python list info
   *
@@ -11,11 +8,11 @@ void print_python_bytes(PyObject *p);
  */
 void print_python_list(PyObject *p)
 {
-	int size, i, ;
+	int size, i;
 	PyObject *item;
 	PyListObject *list = (PyListObject *)p;
 
-	size = PyList_Size(p);;
+	size = PyList_Size(p);
 
 	printf("[*] Python list info\n");
 	printf("[*] Size of the Python List = %ld\n", size);
@@ -25,7 +22,7 @@ void print_python_list(PyObject *p)
 	{
 		item = PyList_GET_ITEM(p, i);
 		printf("Element %ld: %s\n", i, item->ob_type->tp_name);
-		if (PyBytes_Check(item)):
+		if (PyBytes_Check(item))
 			print_python_bytes(item);
 	}
 }
@@ -58,11 +55,10 @@ void print_python_bytes(PyObject *p)
 			size += 1;
 
 		printf("  first %ld bytes: ", size);
-		for (i = 0; i < size; i++)
+		for (i = 0; i < size && i < 10; i++)
 		{
 			printf("%02x", bytes_str[i]);
-			if (i < size - 1)
-				printf(" ");
+
 		}
 		printf("\n");
 	}
