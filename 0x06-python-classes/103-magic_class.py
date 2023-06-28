@@ -10,7 +10,7 @@ class MagicClass:
     '''
     MagicClass class
     '''
-    def __init__(self, radius=None):
+    def __init__(self, radius=0):
         '''
         private MagicClass instance initialization
 
