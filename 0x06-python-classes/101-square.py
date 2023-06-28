@@ -168,12 +168,12 @@ class Square:
         str
             string representation of the square
         '''
+        square_lines = []
         if self.__size == 0:
             return ("")
-        else:
-            square_str = ""
-            for p in range(self.__position[1]):
-                square_str += "\n"
-            for s in range(self.__size):
-                square_str += " " * self.__position[0] + '#' * self.__size + "\n"
-            return (square_str)
+
+        for p in range(self.__position[1]):
+            square_lines.append("\n")
+        for s in range(self.__size):
+            square_lines.append(" " * self.__position[0] + '#' * self.__size)
+        return ("\n".join(square_lines))
