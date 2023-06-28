@@ -171,9 +171,8 @@ class Square:
         square_lines = []
         if self.__size == 0:
             return ("")
-
         for p in range(self.__position[1]):
-            square_lines.append("\n")
+            square_lines.append("")
         for s in range(self.__size):
             square_lines.append(" " * self.__position[0] + '#' * self.__size)
         return ("\n".join(square_lines))
