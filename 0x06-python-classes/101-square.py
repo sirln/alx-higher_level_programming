@@ -168,6 +168,9 @@ class Square:
         str
             string representation of the square
         '''
-        return "\n".join(
-            [" " * self.__position[0] + "#" * self.__size] * self.__size
-        ) if self.__size != 0 else ""
+
+        try:
+            square_lines = [" " * self.__position[0] + "#" * self.__size] * self.__size
+            return "\n".join(square_lines)
+        except AttributeError:
+            return ''
