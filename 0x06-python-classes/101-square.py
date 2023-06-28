@@ -46,7 +46,7 @@ class Square:
             set square position
         '''
 
-        if isinstance(size, int) is False:
+        if not isinstance(size, int):
             raise TypeError('size must be an integer')
         elif size < 0:
             raise ValueError('size must be >= 0')
@@ -137,12 +137,12 @@ class Square:
         '''
         if (
               not isinstance(value, tuple)
-              or len(position) != 2
+              or len(value) != 2
               or not all(isinstance(v, int) and v >= 0 for v in value)
         ):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
-            self.__position = position
+            self.__position = value
 
     def my_print(self):
         '''
@@ -168,11 +168,12 @@ class Square:
         str
             string representation of the square
         '''
-        square_lines = []
         if self.__size == 0:
             return ("")
-        for p in range(self.__position[1]):
-            square_lines.append('\n')
-        for s in range(self.__size):
-            square_lines.append(" " * self.__position[0] + '#' * self.__size)
-        return ("\n".join(square_lines))
+        else:
+            square_str = ""
+            for p in range(self.__position[1]):
+                square_str += "\n"
+            for s in range(self.__size):
+                square_str += " " * self.__position[0] + '#' * self.__size + "\n"
+            return (square_str)
