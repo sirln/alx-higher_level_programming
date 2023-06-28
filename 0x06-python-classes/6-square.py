@@ -45,7 +45,7 @@ class Square:
         position(value)
             set square position
         '''
-        """
+
         if isinstance(size, int) is False:
             raise TypeError('size must be an integer')
         elif size < 0:
@@ -59,9 +59,6 @@ class Square:
         else:
             self.__size = size
             self.__position = position
-        """
-        self.__size = size
-        self.__position = position
 
     @property
     def size(self):
