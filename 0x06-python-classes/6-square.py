@@ -45,7 +45,7 @@ class Square:
         position(value)
             set square position
         '''
-
+        """
         if isinstance(size, int) is False:
             raise TypeError('size must be an integer')
         elif size < 0:
@@ -59,6 +59,9 @@ class Square:
         else:
             self.__size = size
             self.__position = position
+        """
+        self.__size = size
+        self.__position = position
 
     @property
     def size(self):
@@ -153,8 +156,8 @@ class Square:
         '''
         if self.__size == 0:
             print()
-
-        for p in range(self.__position[1]):
-            print()
-        for s in range(self.__size):
-            print(" " * self.__position[0] + '#' * self.__size)
+        else:
+            for p in range(self.__position[1]):
+                print()
+            for s in range(self.__size):
+                print(" " * self.__position[0] + '#' * self.__size)
