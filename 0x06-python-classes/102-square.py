@@ -84,9 +84,9 @@ class Square:
         int
             area of the square
         '''
-        return (self.__size ** 2)
+        return (self.size ** 2)
 
-    def __equal__(self, other_area):
+    def __eq__(self, other_area):
         '''
         compare square instance to answer to `==` comparator
 
@@ -100,9 +100,9 @@ class Square:
         bool
             True if the areas are equal, False otherwise
         '''
-        return (self.area() == other_area())
+        return (self.area() == other_area.area())
 
-    def __not_equal__(self, other_area):
+    def __ne__(self, other_area):
         '''
         compare square instance to answer to `!=` comparator
 
@@ -116,9 +116,9 @@ class Square:
         bool
             True if the areas are not equal, False otherwise.
         '''
-        return (self.area() != other_area())
+        return (self.area() != other_area.area())
 
-    def __greater_than__(self, other_area):
+    def __gt__(self, other_area):
         '''
         compare square instance to answer to `>` comparator
 
@@ -132,9 +132,9 @@ class Square:
         bool
             True if the first square's area is greater, False otherwise.
         '''
-        return (self.area() > other_area())
+        return (self.area() > other_area.area())
 
-    def __greater_or_equal__(self, other_area):
+    def __ge__(self, other_area):
         '''
         compare square instance to answer to `>=` comparator
 
@@ -149,9 +149,9 @@ class Square:
             True if the first square's area is greater than
             or equal, False otherwise.
         '''
-        return (self.area() >= other_area())
+        return (self.area() >= other_area.area())
 
-    def __less_than__(self, other_area):
+    def __lt__(self, other_area):
         '''
         compare square instance to answer to `<` comparator
 
@@ -165,9 +165,9 @@ class Square:
         bool
             True if the first square's area is less, False otherwise.
         '''
-        return self.area() < other_area()
+        return (self.area() < other_area.area())
 
-    def __less_or_equal__(self, other_area):
+    def __le__(self, other_area):
         '''
         compare square instance to answer to `<=` comparator
 
@@ -182,4 +182,4 @@ class Square:
             True if the first square's area is less than
             or equal, False otherwise.
         '''
-        return (self.area() <= other_area())
+        return (self.area() <= other_area.area())
