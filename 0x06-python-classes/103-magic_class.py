@@ -8,7 +8,7 @@ import math
 
 class MagicClass:
     '''
-    Square class
+    MagicClass class
     '''
     def __init__(self, radius=None):
         '''
@@ -25,9 +25,6 @@ class MagicClass:
             if argument(radius) is not an integer.
             if argument(radius) is not a float.
 
-        ValueError
-            if argument(size) is less than 0.
-
         Methods
         -------
         area()
@@ -35,10 +32,8 @@ class MagicClass:
         circumference()
             returns the circumference/perimeter of a circle
         '''
-        if type(radius) is not int:
+        if not (type(radius) is int or type(radius) is float):
             raise TypeError('radius must be a number')
-        elif type(radius) is not float:
-            raise ValueError('radius must be a number')
         else:
             self.__radius = radius
 
@@ -48,7 +43,7 @@ class MagicClass:
 
         Returns
         -------
-        int/float
+        float
             area of a circle
         '''
         return (math.pi * self.__radius ** 2)
@@ -59,7 +54,7 @@ class MagicClass:
 
         Returns
         -------
-        int/float
+        float
             circumference of a circle
         '''
         return (math.pi * self.__radius * 2)
