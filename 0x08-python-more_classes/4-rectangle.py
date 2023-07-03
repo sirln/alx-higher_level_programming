@@ -36,6 +36,8 @@ class Rectangle:
             calculate the perimater of a rectangle
         __str__()
             print the rectangle with the character #
+        __repr__()
+            return an object representation of a rectangle
         '''
         self.__width = width
         self.__height = height
