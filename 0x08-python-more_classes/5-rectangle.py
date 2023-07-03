@@ -36,6 +36,10 @@ class Rectangle:
             calculate the perimater of a rectangle
         __str__()
             print the rectangle with the character #
+        __repr__()
+            return an object representation of a rectangle
+        __del__()
+            print a message when an instance of Rectangle is deleted
         '''
         self.__width = width
         self.__height = height
@@ -157,3 +161,21 @@ class Rectangle:
             if x < self.height - 1:
                 rectangle += "\n"
         return rectangle
+
+    def __repr__(self):
+        '''
+        Returns a string representation of the rectangle
+
+        Returns
+        -------
+        str
+            object representation of the rectangle
+        '''
+        return (f"Rectangle({self.width}, {self.height})")
+
+    def __del__(self):
+        '''
+        Print the message `Bye rectangle...`
+        when an instance of Rectangle is deleted
+        '''
+        print("Bye rectangle...")
