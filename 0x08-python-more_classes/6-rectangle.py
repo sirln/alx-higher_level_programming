@@ -15,6 +15,11 @@ class Rectangle:
         '''
         Rectangle instance initialization
 
+        Attributes
+        ----------
+        number_of_instances : int
+            The number of rectangle instances created.
+
         Arguments
         ---------
         width : int

@@ -50,6 +50,10 @@ class Rectangle:
             return an object representation of a rectangle
         __del__()
             print a message when an instance of Rectangle is deleted
+        bigger_or_equal(rect_1, rect_2)
+            returns the biggest rectangle
+        square(cls, size=0)
+            Creates a new Rectangle instance with equal width and height.
         '''
         self.__width = width
         self.__height = height
@@ -192,3 +196,55 @@ class Rectangle:
         '''
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        '''
+        Static Method
+        Returns the biggest rectangle based on the area
+
+        Arguments
+        -------
+        rect_1 : Rectangle instance
+            rectangle 1
+        rect_2 : Rectangle instance
+            rectangle 2
+
+        Raises
+        ------
+        TypeError
+            if argument(rect_1) is not an instance of Rectangle.
+        TypeError
+            if argument(rect_2) is not an instance of Rectangle.
+
+        Returns
+        -------
+        object
+            biggest rect based on area or `rect_1`
+            if both have the same area value
+        '''
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+
+        if rect_1.area() < rect_2.area():
+            return (rect_2)
+        return (rect_1)
+
+    @classmethod
+    def square(cls, size=0):
+        '''
+        Class Method
+        Creates a new Rectangle instance with equal width and height
+
+        Arguments
+        -------
+        size : int (optional)
+            The size of the square. Defaults to 0.
+        Returns
+        -------
+        Rectangle: Rectangle instance
+            A new Rectangle instance representing a square.
+        '''
+        return cls(size, size)
