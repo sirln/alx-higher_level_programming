@@ -34,7 +34,8 @@ class Rectangle:
             calculate the area of a rectangle
         perimeter()
             calculate the perimater of a rectangle
-
+        __str__()
+            print the rectangle with the character #
         '''
         self.__width = width
         self.__height = height
