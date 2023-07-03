@@ -30,8 +30,8 @@ class Rectangle:
         height(value)
             set rectangle height
         '''
-        self.__width = width
         self.__height = height
+        self.__width = width
 
     @property
     def width(self):
