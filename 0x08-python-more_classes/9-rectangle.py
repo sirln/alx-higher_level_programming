@@ -210,7 +210,6 @@ class Rectangle:
         '''
         return (cls(size, size))
 
-
     def __str__(self):
         '''
         print the rectangle with the character/s
