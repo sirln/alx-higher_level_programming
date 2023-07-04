@@ -55,8 +55,8 @@ class Rectangle:
         square(cls, size=0)
             Creates a new Rectangle instance with equal width and height.
         '''
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     @property
