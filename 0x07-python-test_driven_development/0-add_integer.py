@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Addition Module
+Integer Addition Module
 '''
 
 
