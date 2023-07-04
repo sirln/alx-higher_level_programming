@@ -157,6 +157,46 @@ class Rectangle:
             return (0)
         return (self.width + self.height) * 2
 
+    def __str__(self):
+        '''
+        print the rectangle with the character/s
+        stored in the print_symbol variable.
+
+        Returns
+        -------
+        str
+            printing the rectangle using # character
+        '''
+        rectangle = ""
+        if self.width == 0 or self.height == 0:
+            return rectangle
+
+        for x in range(0, self.height):
+            for y in range(0, self.width):
+                rectangle += str(self.print_symbol)
+            if x < self.height - 1:
+                rectangle += "\n"
+        return rectangle
+
+    def __repr__(self):
+        '''
+        Returns a string representation of the rectangle
+
+        Returns
+        -------
+        str
+            object representation of the rectangle
+        '''
+        return (f"Rectangle({self.width}, {self.height})")
+
+    def __del__(self):
+        '''
+        Print the message `Bye rectangle...`
+        when an instance of Rectangle is deleted
+        '''
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
+
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         '''
@@ -209,43 +249,3 @@ class Rectangle:
             A new Rectangle instance representing a square.
         '''
         return (cls(size, size))
-
-    def __str__(self):
-        '''
-        print the rectangle with the character/s
-        stored in the print_symbol variable.
-
-        Returns
-        -------
-        str
-            printing the rectangle using # character
-        '''
-        rectangle = ""
-        if self.width == 0 or self.height == 0:
-            return rectangle
-
-        for x in range(0, self.height):
-            for y in range(0, self.width):
-                rectangle += str(self.print_symbol)
-            if x < self.height - 1:
-                rectangle += "\n"
-        return rectangle
-
-    def __repr__(self):
-        '''
-        Returns a string representation of the rectangle
-
-        Returns
-        -------
-        str
-            object representation of the rectangle
-        '''
-        return (f"Rectangle({self.width}, {self.height})")
-
-    def __del__(self):
-        '''
-        Print the message `Bye rectangle...`
-        when an instance of Rectangle is deleted
-        '''
-        print("Bye rectangle...")
-        Rectangle.number_of_instances -= 1
