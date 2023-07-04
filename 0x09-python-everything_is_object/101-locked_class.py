@@ -2,6 +2,8 @@
 '''
 LockedClass Module
 '''
+
+
 class LockedClass:
     '''
     prevents the user from dynamically creating new instance attributes,
