@@ -1,0 +1,88 @@
+===========================
+The `0-add_integer` module
+===========================
+
+
+----------------------------------
+Usage of the add_integer function
+----------------------------------
+
+Function importation:
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Check for docstring:
+	>>> doc = __import__("0-add_integer").add_integer.__doc__
+	>>> len(doc) > 1
+	True
+
+Case 1 (int args):
+	>>> add_integer(69, 69)
+	138
+
+case 2 (int and float args):
+	>>> add_integer(69, 69.69)
+	138
+
+case 3 (str and float args):
+	>>> add_integer('69', 69.69)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+case 4 (list and int args):
+	>>> add_integer([69], 69)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+case 5 (tuple and float args):
+	>>> add_integer((69,), 69.69)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+case 6 (int and set args):
+	>>> add_integer(-69, {69,96})
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+
+case 7 (int and dict args):
+	>>> add_integer(69, {"num":69,"name":"test"})
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+
+case 8 (bool and int args):
+	>>> add_integer(True, 69)
+        Traceback (most recent call last):
+        ...
+        TypeError: a must be an integer
+
+case 9 (int and complex args):
+	>>> add_integer(69, 5j)
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+
+case 10 (int and bytes):
+	>>> add_integer(5, b"Hi")
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+
+case 11 (int and NoneType args):
+	>>> add_integer(5, None)
+        Traceback (most recent call last):
+        ...
+        TypeError: b must be an integer
+
+case 12 (zero args):
+	>>> add_integer()
+	Traceback (most recent call last):
+	...
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+case 13 (1 arg):
+	>>> add_integer(-29)
+	69
