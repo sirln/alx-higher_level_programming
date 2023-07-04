@@ -247,4 +247,4 @@ class Rectangle:
         Rectangle: Rectangle instance
             A new Rectangle instance representing a square.
         '''
-        return cls(size, size)
+        return (cls(size, size))
