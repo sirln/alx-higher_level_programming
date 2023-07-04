@@ -16,13 +16,6 @@ class Rectangle:
         '''
         Rectangle instance initialization
 
-        Attributes
-        ----------
-        number_of_instances : int
-            The number of rectangle instances created.
-        print_symbol : str
-            The symbol used for string representation of the rectangle.
-
         Arguments
         ---------
         width : int
@@ -52,8 +45,6 @@ class Rectangle:
             print a message when an instance of Rectangle is deleted
         bigger_or_equal(rect_1, rect_2)
             returns the biggest rectangle
-        square(cls, size=0)
-            Creates a new Rectangle instance with equal width and height.
         '''
         self.__width = width
         self.__height = height
@@ -200,7 +191,6 @@ class Rectangle:
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         '''
-        Static Method
         Returns the biggest rectangle based on the area
 
         Arguments
@@ -235,17 +225,5 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        '''
-        Class Method
-        Creates a new Rectangle instance with equal width and height
-
-        Arguments
-        -------
-        size : int (optional)
-            The size of the square. Defaults to 0.
-        Returns
-        -------
-        Rectangle: Rectangle instance
-            A new Rectangle instance representing a square.
-        '''
+        """Create a new instance of Rectanglep"""
         return (cls(size, size))
