@@ -15,15 +15,15 @@ Check for docstring:
 	>>> len(doc) > 1
 	True
 
-Case 1 (int args):
+Case 1 (addition btn integers):
 	>>> add_integer(69, 69)
 	138
 
-case 2 (int and float args):
+case 2 (addition btn integer and float):
 	>>> add_integer(69, 69.69)
 	138
 
-case 3 (str and float args):
+case 3 (check type string arg):
 	>>> add_integer('69', 69.69)
 	Traceback (most recent call last):
 	...
@@ -77,12 +77,24 @@ case 11 (int and NoneType args):
         ...
         TypeError: b must be an integer
 
-case 12 (zero args):
+case 12 (missing two arguments):
 	>>> add_integer()
 	Traceback (most recent call last):
 	...
 	TypeError: add_integer() missing 1 required positional argument: 'a'
 
-case 13 (1 arg):
+case 13 (missing one argument):
 	>>> add_integer(-29)
 	69
+
+case 14 (Float overflow):
+	>>> add_integer(float('inf'), 40)
+	Traceback (most recent call last):
+	...
+	OverflowError: cannot convert float infinity to integer
+
+case 15 (cannot convert float NaN to int):
+	>>> add_integer(float("nan"))
+	Traceback (most recent call last):
+	...
+	ValueError: cannot convert float NaN to integer
