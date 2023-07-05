@@ -3,9 +3,9 @@ The `2-matrix_divided` module
 ===========================
 
 
-----------------------------------
-Usage of the matrix_divided function
-----------------------------------
+-------------------------------------------
+Test cases for the matrix_divided function
+-------------------------------------------
 
 Function importation:
 	>>> matrix_divided = __import__('2-matrix_divided').matrix_divided

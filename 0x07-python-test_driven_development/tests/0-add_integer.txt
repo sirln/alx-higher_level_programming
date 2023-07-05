@@ -3,9 +3,9 @@ The `0-add_integer` module
 ===========================
 
 
-----------------------------------
-Usage of the add_integer function
-----------------------------------
+---------------------------------------
+Test cases for the add_integer function
+---------------------------------------
 
 Function importation:
 	>>> add_integer = __import__('0-add_integer').add_integer
