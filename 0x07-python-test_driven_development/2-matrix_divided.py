@@ -6,7 +6,8 @@ Matrix Division Module
 
 def matrix_divided(matrix, div):
     '''
-    Divides all elements of a matrix by a given number and returns a new matrix.
+    Divides all elements of a matrix by a given number
+    and returns a new matrix.
 
     Arguments
     -------
@@ -29,8 +30,12 @@ def matrix_divided(matrix, div):
     list of lists
         returns new matrix with elements divided by div.
     '''
-    if not isinstance(matrix, list) or not all(isinstance(row, list) and all(isinstance(element, (int, float)) for element in row) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    error_msg = "matrix must be a matrix (list of lists) of integers/floats"
+    if not isinstance(matrix, list) or not all(
+           isinstance(row, list) and all(
+              isinstance(element, (int, float)) for element in row
+           ) for row in matrix):
+        raise TypeError(error_msg)
 
     if not all(len(row) == len(matrix[0]) for row in matrix):
         raise TypeError("Each row of the matrix must have the same size")
@@ -41,5 +46,6 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    new_matrix = [[round(element / div, 2) for element in row] for row in matrix]
+    new_matrix = [
+        [round(element / div, 2) for element in row] for row in matrix]
     return new_matrix
