@@ -1,0 +1,61 @@
+================================
+The `5-text_indentation` module
+================================
+
+
+---------------------------------------------
+Test cases for the text_indentation function
+---------------------------------------------
+
+Function importation:
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Check for docstring:
+	>>> doc = __import__("5-text_indentation").text_indentation.__doc__
+	>>> len(doc) > 1
+	True
+
+Case 1 (string):
+	>>> text_indentation("Holberton School")
+	Holberton School
+
+case 2 (string with a `.`):
+	>>> text_indentation("Holberton.School")
+	Holberton.
+	<BLANKLINE>
+	School
+
+case 3 (string with `.?:`):
+	>>> text_indentation("Holberton. School? How are you: John")
+	Holberton.
+	<BLANKLINE>
+	School?
+	<BLANKLINE>
+	How are you:
+	<BLANKLINE>
+	John
+
+case 4 (test for an integer):
+	>>> text_indentation(12)
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+case 5 (no args passed):
+	>>> text_indentation()
+	Traceback (most recent call last):
+	...
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+case 6 (empty string):
+	>>> text_indentation("")
+
+case 7 (excess args):
+	>>> text_indentation("print: first string.", "Suuuiiiiiiiiii")
+	Traceback (most recent call last):
+	...
+	TypeError: text_indentation() takes 1 positional argument but 2 were given
+
+case 8 (spaces at the beggining and end of the string):
+	>>> text_indentation("     siro    ")
+	siro

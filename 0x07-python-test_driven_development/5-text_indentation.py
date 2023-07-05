@@ -20,7 +20,7 @@ def text_indentation(text):
         If text is not string
 
     '''
-    if type(text) is not str:
+    if not isinstance(text, str):
         raise TypeError('text must be a string')
 
     text = text.strip(' ')
