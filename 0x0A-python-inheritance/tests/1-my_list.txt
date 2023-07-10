@@ -1,0 +1,51 @@
+===========================
+The `1-my_list` module
+===========================
+
+
+------------------------------------------------
+Test cases for the MyList.print_sorted() method
+------------------------------------------------
+
+Class importation:
+	>>> MyList = __import__('1-my_list').MyList
+
+Check for module docstring:
+	>>> doc = __import__("1-my_list").__doc__
+	>>> len(doc) > 1
+	True
+
+
+Check for class docstring:
+	>>> doc = __import__("1-my_list").MyList.__doc__
+	>>> len(doc) > 1
+	True
+
+Check for method/function docstring:
+	>>> doc = __import__("1-my_list").MyList.print_sorted.__doc__
+	>>> len(doc) > 1
+	True
+
+Case 1 (empty list:- MyList([])):
+	>>> print(MyList([]))
+	[]
+
+case 2 (1 element in a list:- MyList([8])):
+	>>> print(MyList([8]))
+	[8]
+
+case 3 (print list with +ve integers:- MyList([8,3,11,2,0,5])):
+	>>> print(MyList([8,3,11,2,0,5]))
+	[8, 3, 11, 2, 0, 5]
+
+case 4 (print sorted list with +ve integers:- MyList([8,3,11,2,0,5])):
+	>>> MyList([8,3,11,2,0,5]).print_sorted()
+	[0, 2, 3, 5, 8, 11]
+
+case 5 (print list with +ve and -ve integers:- MyList([-8,3,-11,2,0,5])):
+	>>> print(MyList([-8,3,-11,2,0,5]))
+	[-8, 3, -11, 2, 0, 5]
+
+case 6 (print sorted list with +ve and -ve integers:- MyList([-8,3,-11,2,0,5])):
+	>>> MyList([-8,3,-11,2,0,5]).print_sorted()
+	[-11, -8, 0, 2, 3, 5]
