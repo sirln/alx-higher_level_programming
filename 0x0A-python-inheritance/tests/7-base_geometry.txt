@@ -8,7 +8,7 @@ Test cases for the BaseGeometry class
 -------------------------------------
 
 Class importation:
-	>>>  BaseGeometry = __import__('7-base_geometry').BaseGeometry
+	>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 Check for module docstring:
 	>>> doc = __import__('7-base_geometry').__doc__
