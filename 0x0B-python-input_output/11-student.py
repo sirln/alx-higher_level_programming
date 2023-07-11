@@ -76,4 +76,6 @@ class Student:
             A dictionary containing the attribute names
             and their corresponding values to replace attributes with.
         '''
-        self.__dict__ = json
+        # self.__dict__ = json
+        for a, b in json.items():
+            setattr(self, a, b)
