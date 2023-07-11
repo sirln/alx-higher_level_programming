@@ -3,7 +3,6 @@
 '''
 class_to_json module
 '''
-import json
 
 
 def class_to_json(obj):
