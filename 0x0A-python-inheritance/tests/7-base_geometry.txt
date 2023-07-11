@@ -1,0 +1,81 @@
+===========================
+The `7-base_geometry.txt` module
+===========================
+
+
+-------------------------------------
+Test cases for the BaseGeometry class
+-------------------------------------
+
+Class importation:
+	>>>  BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Check for module docstring:
+	>>> doc = __import__('7-base_geometry').__doc__
+	>>> len(doc) > 1
+	True
+
+
+Check for class docstring:
+	>>> doc = __import__('7-base_geometry').BaseGeometry.__doc__
+	>>> len(doc) > 1
+	True
+
+Check for method/function docstring:
+	>>> doc = __import__('7-base_geometry').BaseGeometry.area.__doc__
+	>>> len(doc) > 1
+	True
+
+Check for method/function docstring:
+	>>> doc = __import__('7-base_geometry').BaseGeometry.integer_validator.__doc__
+	>>> len(doc) > 1
+	True
+
+Initialized bg oject of class BaseGeometry:
+	>>> bg = BaseGeometry()
+
+Case 1 (bg.area(), no args):
+	>>> bg.area()
+	Traceback (most recent call last):
+	...
+	Exception: area() is not implemented
+
+case 2 (bg.area(21), 1 arg):
+	>>> bg.area(21)
+	Traceback (most recent call last):
+	...
+	TypeError: area() takes 1 positional argument but 2 were given
+
+case 3 (print(bg.integer_validator(), no args):
+	>>> print(bg.integer_validator())
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+case 4 (print(bg.integer_validator('string', 'siro'))):
+	>>> print(bg.integer_validator('string', 'siro'))
+	Traceback (most recent call last):
+	...
+	TypeError: string must be an integer
+
+case 5 (print(bg.integer_validator('number', 4)):
+	>>> print(bg.integer_validator('number', 4))
+	None
+
+case 6 (print(bg.integer_validator('number', -4))):
+	>>> print(bg.integer_validator('number', -4))
+	Traceback (most recent call last):
+	...
+	ValueError: number must be greater than 0
+
+case 7 (print(bg.integer_validator('number'))):
+	>>> print(bg.integer_validator('number'))
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+case 8 (print(bg.integer_validator('number', 4, 6))):
+	>>> print(bg.integer_validator('number', 4, 6))
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() takes 3 positional arguments but 4 were given
