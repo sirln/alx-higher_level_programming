@@ -19,13 +19,16 @@ def pascal_triangle(n):
     list
         A list of lists representing Pascal's triangle
     '''
-    p = []
 
     if n <= 0:
-        return p
+        return (pt)
 
-    for x in range(n):
-        num = 11 ** x
-        s = [int(n) for n in str(num)]
-        p.append(s)
-    return (p)
+    pt = [[1]]
+
+    for x in range(1, n):
+        row = [1]
+        for y in range(1, x):
+            row.append(pt[x - 1][y] + pt[x - 1][y-1])
+        row.append(1)
+        pt.append(row)
+    return (pt)
