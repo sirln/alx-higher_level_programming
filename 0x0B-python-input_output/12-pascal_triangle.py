@@ -21,7 +21,7 @@ def pascal_triangle(n):
     '''
 
     if n <= 0:
-        return (pt)
+        return ([])
 
     pt = [[1]]
 
