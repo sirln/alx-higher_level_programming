@@ -24,8 +24,8 @@ def pascal_triangle(n):
     if n <= 0:
         return p
 
-    for l in range(n):
-        num = 11 ** l
+    for x in range(n):
+        num = 11 ** x
         s = [int(n) for n in str(num)]
         p.append(s)
     return (p)
