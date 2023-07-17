@@ -3,6 +3,7 @@
 Base Class Module
 '''
 import json
+import csv
 
 
 class Base:
@@ -47,7 +48,7 @@ class Base:
             JSON string representation of `list_dictionaries`
         '''
         if list_dictionaries is None or len(list_dictionaries) == 0:
-            return("[]")
+            return ("[]")
         return (json.dumps(list_dictionaries))
 
     @classmethod
@@ -143,5 +144,58 @@ class Base:
 
             return (instance_list)
 
-        except FileNotFoundError:
+        except IOError:
             return (instance_list)
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        '''
+        Serialize instances to CSV and save them to a file.
+
+        Parameters
+        ----------
+        list_objs : list
+            list of instancesto be serialized and saved
+        '''
+        filename = f'{cls.__name__}.csv'
+        if list_objs is None or not list_objs:
+            return
+
+        with open(filename, 'w', newline='') as file:
+            csv_writer = csv.writer(file)
+            for obj in list_objs:
+                if cls.__name__ == "Rectangle":
+                    row = [obj.id, obj.width, obj.height, obj.x, obj.y]
+                elif cls.__name__ == "Square":
+                    row = [obj.id, obj.size, obj.x, obj.y]
+                else:
+                    raise TypeError("Unsupported class for CSV serialization.")
+                csv_writer.writerow(row)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        '''
+        Deserialize instances from a CSV file.
+
+        Returns
+        -------
+        list
+            List of instances loaded from the file
+        '''
+
+        filename = f'{cls.__name__}.csv'
+        try:
+            with open(filename, 'r', newline='') as file:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                elif cls.__name__ == "Square":
+                    fieldnames = ["id", "size", "x", "y"]
+                else:
+                    errormsg = "Unsupported class for CSV deserialization."
+                    raise TypeError(errormsg)
+                list_dicts = csv.DictReader(file, fieldnames=fieldnames)
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
