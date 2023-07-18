@@ -1,83 +1,186 @@
 #!/usr/bin/python3
-"""Rectangle Test Module"""
+"""
+Unittest for models/rectangle.py
+"""
 import unittest
-import sys
-import io
-from models.base import Base
 from models.rectangle import Rectangle
+from models.base import Base
 
 
-class TestRectangle(unittest.TestCase):
+class TestClassRectangle(unittest.TestCase):
+    """
+    test the class Rectangle
+    """
 
-    def test_rec(self):
-        r = Rectangle(1, 2)
-        self.assertEqual(isinstance(r, Base), True)
-
-    def test_id(self):
-        '''testing id'''
-        a = Rectangle(10, 2)
-        a2 = Rectangle(2, 10)
-        a3 = Rectangle(10, 20)
-        self.assertEqual(a2.id + 1, a3.id)
-
-    def test_set(self):
-        a = Rectangle(10, 2)
-        a2 = Rectangle(2, 10)
-        a3 = Rectangle(10, 20)
-        a4 = Rectangle(10, 2, 0, 0, 12)
-        self.assertEqual(a2.id + 1, a3.id)
-        self.assertEqual(12, a4.id)
-
-    def test_set_3(self):
+    def test_no_args(self):
+        """
+        test for what happens if did not pass any arguments
+        """
         with self.assertRaises(TypeError):
-            x = Rectangle("try", "this")
+            empty = Rectangle()
+
+    def setUp(self):
+        """
+        this is for testing
+        """
+        self.quad = Rectangle(6, 6, 6, 6, 6)
+
+    def test_set_id(self):
+        """
+        tests if the id was instantiated correctly
+        """
+        self.assertEqual(self.quad.id, 6)
+
+    def test_width(self):
+        """
+        tests if width was instantiated correctly
+        """
+        self.assertEqual(self.quad.width, 6)
+
+    def test_height(self):
+        """
+        tests if height was instantiated correctly
+        """
+        self.assertEqual(self.quad.height, 6)
+
+    def test_x(self):
+        """
+        tests if x was instantiated correctly
+        """
+        self.assertEqual(self.quad.x, 6)
+
+    def test_y(self):
+        """
+        tests if y was instantiated correctly
+        """
+        self.assertEqual(self.quad.y, 6)
+
+    def test_get_set_width(self):
+        """
+        tests getter/setter for width
+        """
+        self.quad.width = 9
+        self.assertEqual(self.quad.width, 9)
+
+    def test_get_set_height(self):
+        """
+        tests getter/setter for height
+        """
+        self.quad.height = 9
+        self.assertEqual(self.quad.height, 9)
+
+    def test_get_set_x(self):
+        """
+        tests getter/setter for x
+        """
+        self.quad.x = 9
+        self.assertEqual(self.quad.x, 9)
+
+    def test_get_set_y(self):
+        """
+        tests getter/setter for y
+        """
+        self.quad.y = 9
+        self.assertEqual(self.quad.y, 9)
+
+    def test_update_args(self):
+        """
+        tests the update public method with *args
+        """
+        self.quad.update(8, 8, 8, 8, 8)
+        self.assertEqual(self.quad.id, 8)
+        self.assertEqual(self.quad.width, 8)
+        self.assertEqual(self.quad.height, 8)
+        self.assertEqual(self.quad.x, 8)
+        self.assertEqual(self.quad.y, 8)
+
+    def test_update_kwargs_id(self):
+        """
+        test updating the instance id with **kwargs
+        """
+        self.quad.update(id=6)
+        self.assertEqual(self.quad.id, 6)
+
+    def test_update_kwargs_width(self):
+        """
+        test updating the instance width with **kwargs
+        """
+        self.quad.update(width=6)
+        self.assertEqual(self.quad.width, 6)
+
+    def test_update_kwargs_height(self):
+        """
+        test updating the instance height with **kwargs
+        """
+        self.quad.update(height=6)
+        self.assertEqual(self.quad.height, 6)
+
+    def test_update_kwargs_x(self):
+        """
+        test updating the instance x with **kwargs
+        """
+        self.quad.update(x=6)
+        self.assertEqual(self.quad.x, 6)
+
+    def test_update_kwargs_y(self):
+        """
+        test updating the instance y with **kwargs
+        """
+        self.quad.update(y=6)
+        self.assertEqual(self.quad.y, 6)
+
+    def test_set_width_not_int(self):
+        """
+        test setting width with non-int
+        """
         with self.assertRaises(TypeError):
-            x = Rectangle(5.0, 4.0)
-        with self.assertRaises(TypeError):
-            x = Rectangle(5.0, 4.0, "try")
-        with self.assertRaises(TypeError):
-            x = Rectangle(10, 2, 5.0, 4.0)
-        with self.assertRaises(TypeError):
-            x = Rectangle(1.0, 2.0, 3.0, 4.0)
+            self.quad.width = "width"
 
-    def test_set_4(self):
-        r = Rectangle(10, 2, 30)
-        r.update(69)
-        self.assertEqual(69, r.id)
-        r.update(69, 6)
-        self.assertEqual(6, r.width)
-        r.update(69, 6, 7)
-        self.assertEqual(7, r.height)
-        r.update(69, 6, 7, 8,)
-        self.assertEqual(8, r.x)
-        r.update(69, 6, 7, 8, 9)
-        self.assertEqual(9, r.y)
-
-    def test_str(self):
-        r = Rectangle(4, 6, 2, 1, 12)
-        self.assertEqual("[Rectangle] (12) 2/1 - 4/6", str(r))
-
-    def test_kwarg(self):
-        r = Rectangle(30, 11, 35, 23, 6)
-        r.update(69, id=6, width=9)
-        self.assertEqual(69, r.id)
-
-    '''def test_dict(self):
-        r = Rectangle(31, 11, 35, 23, 6)
-        r_dict = r.to_dictionary
-        self.assertEqual(r_dict['width'], 30)
-        self.assertEqual(r_dict['height'], 11)
-        self.assertEqual(r_dict['x'], 35)
-        self.assertEqual(r_dict['y'], 23)'''
-
-    def test_rec(self):
+    def test_set_width_neg_int(self):
+        """
+        test setting width with negative integer
+        """
         with self.assertRaises(ValueError):
-            x = Rectangle(-1, 2)
-        with self.assertRaises(ValueError):
-            x = Rectangle(1,-2)
-        with self.assertRaises(ValueError):
-            x = Rectangle(1, 2, -3)
+            self.quad.width = -5
 
-    def test_load_from_file(self):
-        p = Rectangle.load_from_file()
-        self.assertEqual(p, [])
+    def test_area(self):
+        """
+        test public method that returns area of instance
+        """
+        self.assertEqual(self.quad.area(), 36)
+
+    def test_display(self):
+        """
+        tests public method that prints in stdout the instance using '#' does
+        not return anything
+        """
+        self.assertIsNone(self.quad.display())
+
+    def test_subclass_of_base(self):
+        """
+        tests that Rectangle is a subclass of Base
+        """
+        self.assertIsInstance(self.quad, Base)
+
+    def test_override_str(self):
+        """
+        tests that the overloading __str__ method returns correct string
+        """
+        self.assertEqual(self.quad.__str__(), "[Rectangle] (6) 6/6 - 6/6")
+
+    def test_to_dictionary(self):
+        """
+        tests the public method to make sure it returns a dictionary
+        """
+        self.assertTrue(type(self.quad.to_dictionary()) is dict)
+
+    def test_create(self):
+        """
+        tests the Base class method create
+        """
+        instance_dict = self.quad.to_dictionary()
+        rectangle_dupe = Rectangle.create(**instance_dict)
+        self.assertIsInstance(rectangle_dupe, Rectangle)
+
+if __name__ == '__main__':
+    unittest.main()

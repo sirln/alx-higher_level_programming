@@ -1,71 +1,166 @@
 #!/usr/bin/python3
-"""Square Test Module"""
-import sys
+"""
+Unittest for models/square.py
+"""
 import unittest
 from models.square import Square
+from models.rectangle import Rectangle
+from models.base import Base
 
 
-class TestSquare(unittest.TestCase):
+class TestClassSquare(unittest.TestCase):
+    """
+    test the class Square
+    """
 
-    def test_square_input(self):
-        with self.assertRaises(ValueError):
-            s = Square(0, 0)
-        with self.assertRaises(ValueError):
-            s = Square(13, 12, -69, -96)
+    def test_no_args(self):
+        """
+        test for what happens if did not pass any arguments
+        """
         with self.assertRaises(TypeError):
-            s = Square("1")
-        with self.assertRaises(TypeError):
-            s = Square(1, "2")
-        with self.assertRaises(ValueError):
-            s = Square(-1)
-        with self.assertRaises(ValueError):
-            s = Square(1, -2)
-        with self.assertRaises(TypeError):
-            s = Square(3, 6, 2.0, 5.0)
-        with self.assertRaises(TypeError):
-            s = Square("test", "this", 6.0, 7.5)
-        with self.assertRaises(TypeError):
-            s = Square(2.0, 6.7)
+            empty = Square()
 
-    def test_area(self):
-        s = Square(10, 2)
-        self.assertEqual(s.area(), 100)
+    def setUp(self):
+        """
+        this is for testing
+        """
+        self.equad = Square(6, 6, 6, 6)
 
-    def test_str(self):
-        r = Square(3, 6, 9, 12)
-        self.assertEqual("[Square] (12) 6/9 - 3", str(r))
+    def test_set_id(self):
+        """
+        tests if the id was instantiated correctly
+        """
+        self.assertEqual(self.equad.id, 6)
 
     def test_size(self):
-        s = Square(5, 4, 3, 2)
-        s.size = 69
-        self.assertEqual(69, s.height)
-        self.assertEqual(69, s.size)
-        self.assertEqual(69, s.width)
+        """
+        tests if width was instantiated correctly
+        """
+        self.assertEqual(self.equad.size, 6)
 
-    def test_size_2(self):
-        s = Square(5, 0, 0, 2)
+    def test_x(self):
+        """
+        tests if x was instantiated correctly
+        """
+        self.assertEqual(self.equad.x, 6)
+
+    def test_y(self):
+        """
+        tests if y was instantiated correctly
+        """
+        self.assertEqual(self.equad.y, 6)
+
+    def test_get_set_size(self):
+        """
+        tests getter/setter for size
+        """
+        self.equad.size = 9
+        self.assertEqual(self.equad.size, 9)
+
+    def test_get_set_x(self):
+        """
+        tests getter/setter for x
+        """
+        self.equad.x = 9
+        self.assertEqual(self.equad.x, 9)
+
+    def test_get_set_y(self):
+        """
+        tests getter/setter for y
+        """
+        self.equad.y = 9
+        self.assertEqual(self.equad.y, 9)
+
+    def test_update_args(self):
+        """
+        tests the update public method with *args
+        """
+        self.equad.update(8, 8, 8, 8)
+        self.assertEqual(self.equad.id, 8)
+        self.assertEqual(self.equad.size, 8)
+        self.assertEqual(self.equad.x, 8)
+        self.assertEqual(self.equad.y, 8)
+
+    def test_update_kwargs_id(self):
+        """
+        test updating the instance id with **kwargs
+        """
+        self.equad.update(id=6)
+        self.assertEqual(self.equad.id, 6)
+
+    def test_update_kwargs_size(self):
+        """
+        test updating the instance width with **kwargs
+        """
+        self.equad.update(size=6)
+        self.assertEqual(self.equad.size, 6)
+
+    def test_update_kwargs_x(self):
+        """
+        test updating the instance x with **kwargs
+        """
+        self.equad.update(x=6)
+        self.assertEqual(self.equad.x, 6)
+
+    def test_update_kwargs_y(self):
+        """
+        test updating the instance y with **kwargs
+        """
+        self.equad.update(y=6)
+        self.assertEqual(self.equad.y, 6)
+
+    def test_set_size_not_int(self):
+        """
+        test setting width with non-int
+        """
+        with self.assertRaises(TypeError):
+            self.equad.size = "size"
+
+    def test_set_size_neg_int(self):
+        """
+        test setting width with negative integer
+        """
         with self.assertRaises(ValueError):
-            s.size = 0
-        s = Square(3, 6, 9, 12)
-        with self.assertRaises(TypeError):
-            s.size = 5.0
-        with self.assertRaises(TypeError):
-            s.size = "string"
+            self.equad.size = -5
+
+    def test_area(self):
+        """
+        test public method that returns area of instance
+        """
+        self.assertEqual(self.equad.area(), 36)
+
+    def test_display(self):
+        """
+        tests public method that prints in stdout the instance using '#' does
+        not return anything
+        """
+        self.assertIsNone(self.equad.display())
+
+    def test_subclass_of_base(self):
+        """
+        tests that Square is a subclass of Rectangle
+        """
+        self.assertTrue(issubclass(Square, Rectangle))
+
+    def test_override_str(self):
+        """
+        tests that the overloading __str__ method returns correct string
+        """
+        self.assertEqual(self.equad.__str__(), "[Square] (6) 6/6 - 6")
 
     def test_to_dictionary(self):
-        s = Square(3, 6, 9, 12)
-        s_dict = s.to_dictionary()
-        self.assertEqual(s_dict['id'], 12)
-        self.assertEqual(s_dict['size'], 3)
-        self.assertEqual(s_dict['x'], 6)
-        self.assertEqual(s_dict['y'], 9)
+        """
+        tests the public method to make sure it returns a dictionary
+        """
+        self.assertTrue(type(self.equad.to_dictionary()) is dict)
 
-    def test_square(self):
-        s1 = Square(1, 2)
-        self.assertEquals(s1.id, s1.id)
+    def test_create(self):
+        """
+        tests the Base class method create
+        """
+        instance_dict = self.equad.to_dictionary()
+        square_dupe = Square.create(**instance_dict)
+        self.assertTrue(type(square_dupe) is Square)
 
-    def test_save_to_file(self):
-        s2 = Square.save_to_file(None)
-        self.assertEqual(s2, None)
-        with self.assertRaises(TypeError):
-            s2 = Square.save_to_file([])
+if __name__ == '__main__':
+    unittest.main()
