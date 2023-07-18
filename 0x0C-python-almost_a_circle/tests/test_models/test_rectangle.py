@@ -2,14 +2,16 @@
 """
 Unittest for models/rectangle.py
 """
+import sys
 import unittest
+from io import StringIO
 from models.rectangle import Rectangle
 from models.base import Base
 
 
 class TestClassRectangle(unittest.TestCase):
     """
-    test the class Rectangle
+    Test Cases for Rectangle Class
     """
 
     def test_no_args(self):
@@ -82,6 +84,97 @@ class TestClassRectangle(unittest.TestCase):
         """
         self.quad.y = 9
         self.assertEqual(self.quad.y, 9)
+
+    def test_init_with_width_and_height(self):
+        '''
+        Test of Rectangle(1, 2) exists
+        '''
+        rectangle = Rectangle(1, 2)
+        self.assertIsInstance(rectangle, Rectangle)
+
+    def test_init_with_width_height_and_x(self):
+        '''
+        Test of Rectangle(1, 2, 3) exists
+        '''
+        rectangle = Rectangle(1, 2, 3)
+        self.assertIsInstance(rectangle, Rectangle)
+
+    def test_init_with_width_height_x_and_y(self):
+        '''
+        Test of Rectangle(1, 2, 3, 4) exists
+        '''
+        rectangle = Rectangle(1, 2, 3, 4)
+        self.assertIsInstance(rectangle, Rectangle)
+
+    def test_init_with_invalid_width(self):
+        '''
+        Test of Rectangle("1", 2) exists
+        '''
+        with self.assertRaises(TypeError):
+            rectangle = Rectangle("1", 2)
+
+    def test_init_with_invalid_height(self):
+        '''
+        Test of Rectangle(1, "2") exists
+        '''
+        with self.assertRaises(TypeError):
+            rectangle = Rectangle(1, "2")
+
+    def test_init_with_invalid_x(self):
+        '''
+        Test of Rectangle(1, 2, "3") exists
+        '''
+        with self.assertRaises(TypeError):
+            rectangle = Rectangle(1, 2, "3")
+
+    def test_init_with_invalid_y(self):
+        '''
+        Test of Rectangle(1, 2, 3, "4") exists
+        '''
+        with self.assertRaises(TypeError):
+            rectangle = Rectangle(1, 2, 3, "4")
+
+    def test_init_with_negative_width(self):
+        '''
+        Test of Rectangle(-1, 2) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(-1, 2)
+
+    def test_init_with_negative_height(self):
+        '''
+        Test of Rectangle(1, -2) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(1, -2)
+
+    def test_init_with_zero_width(self):
+        '''
+        Test of Rectangle(0, 2) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(0, 2)
+
+    def test_init_with_zero_height(self):
+        '''
+        Test of Rectangle(1, 0) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(1, 0)
+
+    def test_init_with_negative_x(self):
+        '''
+        Test of Rectangle(1, 2, -3) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(1, 2, -3)
+
+    def test_init_with_negative_y(self):
+        '''
+        Test of Rectangle(1, 2, 3, -4) exists
+        '''
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle(1, 2, 3, -4)
 
     def test_update_args(self):
         """
@@ -174,6 +267,14 @@ class TestClassRectangle(unittest.TestCase):
         """
         self.assertTrue(type(self.quad.to_dictionary()) is dict)
 
+    def test_to_dictionary_exists(self):
+        '''
+        Test of to_dictionary() in Rectangle exists
+        '''
+        rectangle = Rectangle(2, 3, 4, 5, 6)
+        dictionary = rectangle.to_dictionary()
+        self.assertIsInstance(dictionary, dict)
+
     def test_create(self):
         """
         tests the Base class method create
@@ -181,6 +282,7 @@ class TestClassRectangle(unittest.TestCase):
         instance_dict = self.quad.to_dictionary()
         rectangle_dupe = Rectangle.create(**instance_dict)
         self.assertIsInstance(rectangle_dupe, Rectangle)
+
 
 if __name__ == '__main__':
     unittest.main()

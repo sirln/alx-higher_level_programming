@@ -22,9 +22,79 @@ class TestClassSquare(unittest.TestCase):
 
     def setUp(self):
         """
-        this is for testing
+        Set up the Square object for testing.
         """
         self.equad = Square(6, 6, 6, 6)
+        self.square = Square(1)
+
+    def test_square_1_exists(self):
+        '''
+        Test if Square object with size 1 exists.
+        '''
+        self.assertIsInstance(self.square, Square)
+
+    def test_square_1_2_exists(self):
+        '''
+        Test if Square object with size 1, x=2 exists.
+        '''
+        square = Square(1, 2)
+        self.assertIsInstance(square, Square)
+
+    def test_square_1_2_3_exists(self):
+        '''
+        Test if Square object with size 1, x=2, y=3 exists.
+        '''
+        square = Square(1, 2, 3)
+        self.assertIsInstance(square, Square)
+
+    def test_square_invalid_size(self):
+        '''
+        Test if Square object with invalid size raises TypeError.
+        '''
+        with self.assertRaises(TypeError):
+            Square("1")
+
+    def test_square_invalid_x(self):
+        '''
+        Test if Square object with invalid x coordinate raises TypeError.
+        '''
+        with self.assertRaises(TypeError):
+            Square(1, "2")
+
+    def test_square_invalid_y(self):
+        '''
+        Test if Square object with invalid y coordinate raises TypeError.
+        '''
+        with self.assertRaises(TypeError):
+            Square(1, 2, "3")
+
+    def test_square_negative_size(self):
+        '''
+        Test if Square object with negative size raises ValueError.
+        '''
+        with self.assertRaises(ValueError):
+            Square(-1)
+
+    def test_square_negative_x(self):
+        '''
+        Test if Square object with negative x coordinate raises ValueError.
+        '''
+        with self.assertRaises(ValueError):
+            Square(1, -2)
+
+    def test_square_negative_y(self):
+        '''
+        Test if Square object with negative y coordinate raises ValueError.
+        '''
+        with self.assertRaises(ValueError):
+            Square(1, 2, -3)
+
+    def test_square_zero_size(self):
+        '''
+        Test if Square object with zero size raises ValueError.
+        '''
+        with self.assertRaises(ValueError):
+            Square(0)
 
     def test_set_id(self):
         """
@@ -153,6 +223,38 @@ class TestClassSquare(unittest.TestCase):
         tests the public method to make sure it returns a dictionary
         """
         self.assertTrue(type(self.equad.to_dictionary()) is dict)
+
+    def test_to_dictionary(self):
+        '''
+        Test if the to_dictionary() method returns the correct dictionary representation.
+        '''
+        square = Square(2, 3, 4, 5)
+        expected_dict = {'id': 5, 'size': 2, 'x': 3, 'y': 4}
+        self.assertDictEqual(square.to_dictionary(), expected_dict)
+
+    def test_save_to_file_empty_list(self):
+        '''
+        Test if save_to_file([]) saves an empty list to file.
+        '''
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, "[]")
+
+    def test_load_from_file_exists(self):
+        '''
+        Test if load_from_file() returns a list of Square objects when the file exists.
+        '''
+        square = Square(2, 3, 4, 5)
+        Square.save_to_file([square])
+        squares = Square.load_from_file()
+        self.assertIsInstance(squares, list)
+        self.assertEqual(len(squares), 1)
+        self.assertIsInstance(squares[0], Square)
+        self.assertEqual(squares[0].size, 2)
+        self.assertEqual(squares[0].x, 3)
+        self.assertEqual(squares[0].y, 4)
+        self.assertEqual(squares[0].id, 5)
 
     def test_create(self):
         """
