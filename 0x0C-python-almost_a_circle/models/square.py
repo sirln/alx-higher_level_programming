@@ -87,8 +87,9 @@ class Square(Rectangle):
             in the format:
                 [Square] (<id>) <x>/<y> - <width>
         '''
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".\
-            format(self.id, self.x, self.y, self.width)
+        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
+                                                 self.width)
+
     def update(self, *args, **kwargs):
         '''
         Assigning an argument to each attribute
