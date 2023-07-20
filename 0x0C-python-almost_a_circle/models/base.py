@@ -4,7 +4,7 @@ Base Class Module
 '''
 import json
 import csv
-
+import turtle
 
 class Base:
     '''
@@ -199,3 +199,52 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        canvas = turtle.Screen()
+        canvas.title(" Let's draw it")
+        canvas.bgcolor('#001a33')
+        #canvas.bgpic('d.gif')
+
+        surtle = turtle.Turtle()
+        surtle.speed(1)
+        surtle.hideturtle()
+
+        colors = {
+                  1: '#006635',
+                  2: '#660066',
+                  3: '#001a33',
+                  4: '#660033',
+                  5: '#B399FF',
+                  6: '#006635',
+                  7: '#cccc00',
+                  8: '#00e6e6'
+            }
+        for c, r in enumerate(list_rectangles, 1):
+            surtle.pen(pensize=3, pencolor='#F5DEB3', fillcolor=colors[c])
+            surtle.begin_fill()
+            surtle.up()
+            surtle.setpos(r.x, r.y)
+            surtle.down()
+            for num_angles in range(2):
+                surtle.fd(r.width)
+                surtle.left(90)
+                surtle.fd(r.height)
+                surtle.left(90)
+            surtle.end_fill()
+
+        for c, s in enumerate(list_squares, 4):
+            surtle.pen(pensize=3, pencolor='#cccc00', fillcolor=colors[c])
+            surtle.begin_fill()
+            surtle.up()
+            surtle.setpos(s.x, s.y)
+            surtle.down()
+            for num_angles in range(2):
+                surtle.fd(s.width)
+                surtle.left(90)
+                surtle.fd(s.height)
+                surtle.left(90)
+            surtle.end_fill()
+
+        canvas.exitonclick()
