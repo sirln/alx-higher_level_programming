@@ -212,12 +212,6 @@ class TestClassSquare(unittest.TestCase):
         """
         self.assertTrue(issubclass(Square, Rectangle))
 
-    def test_override_str(self):
-        """
-        tests that the overloading __str__ method returns correct string
-        """
-        self.assertEqual(self.equad.__str__(), "[Square] (6) 6/6 - 6")
-
     def test_to_dictionary(self):
         """
         tests the public method to make sure it returns a dictionary

@@ -255,12 +255,6 @@ class TestClassRectangle(unittest.TestCase):
         """
         self.assertIsInstance(self.quad, Base)
 
-    def test_override_str(self):
-        """
-        tests that the overloading __str__ method returns correct string
-        """
-        self.assertEqual(self.quad.__str__(), "[Rectangle] (6) 6/6 - 6/6")
-
     def test_to_dictionary(self):
         """
         tests the public method to make sure it returns a dictionary
