@@ -25,8 +25,12 @@ if __name__ == '__main__':
 
     cursor = db_connect.cursor()
 
-    #query = f"SELECT * FROM states WHERE name='"+ state_name +"' ORDER BY states.id ASC"
-    query = f"SELECT * FROM states WHERE name='{state_name}' ORDER BY states.id ASC"
+    # query = f"SELECT * FROM states \
+    #            WHERE name='"+ state_name +"' \
+    #            ORDER BY states.id ASC"
+    query = f"""SELECT * FROM states \
+                WHERE name='{state_name}' \
+                ORDER BY states.id ASC"""
     cursor.execute(query)
 
     rows = cursor.fetchall()
@@ -35,4 +39,3 @@ if __name__ == '__main__':
 
     cursor.close()
     db_connect.close()
-
