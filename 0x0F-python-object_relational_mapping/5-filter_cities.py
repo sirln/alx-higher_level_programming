@@ -33,13 +33,10 @@ if __name__ == '__main__':
     cursor.execute(query, (state_name,))
 
     rows = cursor.fetchall()
-    state_cities = ''
+    state_cities = []
     for row in rows:
-        if state_cities == '':
-            state_cities += str(row).strip('(),')
-        else:
-            state_cities += ', ' + str(row).strip('(),')
-    print(state_cities)
+        state_cities.append(row[0])
+    print(', '.join(state_cities))
 
     cursor.close()
     db_connect.close()
