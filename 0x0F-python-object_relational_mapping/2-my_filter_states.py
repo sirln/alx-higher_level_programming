@@ -28,9 +28,10 @@ if __name__ == '__main__':
     # query = f"SELECT * FROM states \
     #            WHERE name='"+ state_name +"' \
     #            ORDER BY states.id ASC"
-    query = f"""SELECT * FROM states \
-                WHERE name='{state_name}' \
-                ORDER BY states.id ASC"""
+    query = """SELECT * FROM states \
+                WHERE name='{}' \
+                ORDER BY states.id \
+                ASC""".format(state_name)
     cursor.execute(query)
 
     rows = cursor.fetchall()
