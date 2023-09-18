@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 '''
-Module to lists all State objects from the database hbtn_0e_6_usa
+Module to lists all State objects
+from the database hbtn_0e_6_usa
 '''
+
 from sys import argv
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -15,7 +17,8 @@ if __name__ == '__main__':
 
     # Connectivity to the database
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(username, password, database))
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Bind the engine to the metadata of the Base class
     Base.metadata.bind = engine
