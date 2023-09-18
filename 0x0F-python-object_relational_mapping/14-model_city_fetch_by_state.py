@@ -25,10 +25,10 @@ if __name__ == '__main__':
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
 
-    # Query to join State and City tables and fetch required details
+    ## Query to join State and City tables and fetch required details
     results = session.query(State, City)\
-        .filter(State.id == City.state_id)\
-        .order_by(City.id).all()
+       .filter(State.id == City.state_id)\
+       .order_by(City.id).all()
 
     # Display results
     for state, city in results:
