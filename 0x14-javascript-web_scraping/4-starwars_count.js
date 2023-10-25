@@ -12,7 +12,6 @@ const apiUrl = process.argv[2];
 request.get(apiUrl, (error, response, body) => {
   if (error) {
     console.error(error);
-    return;
   }
   const films = JSON.parse(body).results;
   const uri = 'https://swapi-api.alx-tools.com/api/people/18/';
