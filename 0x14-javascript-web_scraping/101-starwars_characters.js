@@ -9,22 +9,27 @@ if (process.argv.length <= 2) {
   process.exit(1);
 }
 
+function fetchCharacterName (urls, index) {
+  if (index >= urls.length) {
+    process.exit(0);
+  }
+
+  request.get(urls[index], (err, res, charBody) => {
+    if (err) {
+      console.error(err);
+    }
+    const character = JSON.parse(charBody);
+    console.log(character.name);
+
+    fetchCharacterName(urls, index + 1);
+  });
+}
+
 request.get(apiUrl, (error, response, body) => {
   if (error) {
     console.error(error);
     return;
   }
   const film = JSON.parse(body);
-  const characterUrls = film.characters;
-
-  characterUrls.forEach((url, index) => {
-    request.get(url, (err, res, charBody) => {
-      if (err) {
-        console.error(err);
-      } else {
-        const character = JSON.parse(charBody);
-        console.log(character.name);
-      }
-    });
-  });
+  fetchCharacterName(film.characters, 0);
 });
