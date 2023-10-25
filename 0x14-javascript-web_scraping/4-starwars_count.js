@@ -15,10 +15,6 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
   const films = JSON.parse(body).results;
-  if (!films) {
-    console.error(error);
-    return;
-  }
   const uri = 'https://swapi-api.alx-tools.com/api/people/18/';
   const count = films.filter(film => film.characters.includes(`${uri}`));
   console.log(count.length);
