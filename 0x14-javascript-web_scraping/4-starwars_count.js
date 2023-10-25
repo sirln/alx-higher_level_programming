@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/snap/bin/node
 
 const request = require('request');
 
@@ -12,10 +12,16 @@ const apiUrl = process.argv[2];
 request.get(apiUrl, (error, response, body) => {
   if (error) {
     console.error(error);
-  } else {
-    const films = JSON.parse(body).results;
-    const uri = 'https://swapi-api.alx-tools.com/api/people/18/';
-    const count = films.filter(film => film.characters.includes(`${uri}`));
-    console.log(count.length);
+    return;
   }
+  const films = JSON.parse(body).results;
+  if (!films) {
+    console.error(error);
+    return;
+  }
+  /* const uri = 'https://swapi-api.alx-tools.com/api/people/18/'; */
+  const count = films.filter(film =>
+    film.characters.some(characterUrl => characterUrl.endsWith('18/'))
+  );
+  console.log(count.length);
 });
